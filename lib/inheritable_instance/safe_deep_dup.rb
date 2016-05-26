@@ -4,7 +4,8 @@ module InheritableInstance
   module SafeDeepDup
     extend self
 
-    SKIP = [ NilClass, FalseClass, TrueClass, Symbol, Module, Method ].freeze
+    SKIP = [ NilClass, FalseClass, TrueClass,
+             Symbol, Module, Method, UnboundMethod ].freeze
 
     def duplicate(obj)
       return duplicate_hash(obj)  if obj.is_a?(Hash)
