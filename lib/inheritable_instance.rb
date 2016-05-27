@@ -1,5 +1,6 @@
 require "inheritable_instance/version"
 require "inheritable_instance/safe_deep_dup"
+require "inheritable_instance/includible"
 require "set"
 
 module InheritableInstance
