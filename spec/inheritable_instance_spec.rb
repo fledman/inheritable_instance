@@ -45,4 +45,25 @@ describe InheritableInstance do
       expect(get(child, :@key)).to equal dup
     end
   end
+
+  context 'Includible' do
+    let(:klass) { Class.new{ include InheritableInstance::Includible } }
+
+    it 'can be included' do
+      expect(klass.ancestors).to include InheritableInstance::Includible
+    end
+
+    it 'builds the ancestor chain correctly' do
+      expect(klass.singleton_class.ancestors).to include InheritableInstance
+    end
+
+    it 'does not break if both included and extended' do
+      klass.extend InheritableInstance
+      klass.inheritable_instance :@var, 1
+      [:@inheritable_instance_vars, :@var].each do |name|
+        expect(klass).to receive(:instance_variable_get).with(name).once
+      end
+      Class.new(klass)
+    end
+  end
 end
