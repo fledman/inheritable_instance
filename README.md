@@ -12,7 +12,7 @@ gem 'inheritable_instance'
 
 ## Usage
 
-Insert the InheritableInstance module into your class's ancestor chain:
+Insert the `InheritableInstance` module into the ancestry chain of your class:
 ```ruby
 class FakeClass
   extend InheritableInstance
